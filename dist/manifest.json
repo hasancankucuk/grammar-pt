@@ -1,0 +1,49 @@
+{
+    "manifest_version": 3,
+    "name": "GrammarPT",
+    "version": "1.0.0",
+    "description": "Improve your writing with the GrammarPT grammar extension.",
+    "action": {
+        "default_popup": "js/index.html",
+        "default_title": "GrammarPT",
+        "default_icon": {
+            "128": "./assets/GrammarPTLogo128.png",
+            "48": "./assets/GrammarPTLogo48.png",
+            "16": "./assets/GrammarPTLogo16.png"
+        }
+    },
+    "icons": {
+        "128": "./assets/GrammarPTLogo128.png",
+        "48": "./assets/GrammarPTLogo48.png",
+        "16": "./assets/GrammarPTLogo16.png"
+    },
+    "permissions": [
+        "activeTab",
+        "runtime",
+        "storage",
+        "webNavigation"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "Assets/*"
+            ],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "background": {
+        "service_worker": "./js/background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*/*"
+            ],
+            "js": [
+                "./js/content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "host_permissions": ["*://*/*"]
+}
